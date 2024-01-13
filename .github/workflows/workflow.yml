@@ -1,0 +1,19 @@
+name: Pull request workflow
+on: pull_request
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node Js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - name: Install project dependencies
+        run: npm ci
+      - name: Publish to chromatic
+        run: npm run chromatic -- --project-token=${{secrets.CHROMATIC_PROJECT_TOKEN}}
