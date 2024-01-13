@@ -1,7 +1,7 @@
 name: Pull request workflow
 on: pull_request
 jobs:
-  install-dependencies:
+  chromatic:
     runs-on: ubuntu-latest
     steps:
       - name: Get the code
@@ -16,4 +16,4 @@ jobs:
       - name: Install project dependencies
         run: npm ci
       - name: Publish to chromatic
-        run: npm run chromatic
+        run: npm run chromatic --project-token ${{secrets.CHROMATIC_PROJECT_TOKEN}}
