@@ -1,5 +1,5 @@
 name: Pull request workflow
-on: pull_request
+on: push
 jobs:
   chromatic:
     runs-on: ubuntu-latest
